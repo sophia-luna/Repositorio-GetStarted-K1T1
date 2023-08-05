@@ -7,8 +7,6 @@
 * Modified
 * Staged
 
-## Repositório Local
-
 ### Criar novo repositório
 
 	git init
@@ -35,21 +33,21 @@
 
 ##### Comitar um arquivo
 	
-	git commit meu_arquivo.txt
+	git commit myfile
 
 ##### Comitar vários arquivos
 
-	git commit meu_arquivo.txt meu_outro_arquivo.txt
+	git commit file1 file2
 	
 ##### Comitar informando mensagem
 
-	git commit meuarquivo.txt -m "minha mensagem de commit"
+	git commit file -m "minha mensagem de commit"
 
 ### Remover arquivo/diretório
 
 ##### Remover arquivo
 
-	git rm meu_arquivo.txt
+	git rm myfile
 
 ##### Remover diretório
 
@@ -74,14 +72,52 @@
 ##### Exibir histórico com diff das N últimas alterações
 
 	git log -p -N
-	
+
+#### listagem com hash parcial e mensagem apenas
+
+    git log --oneline
+
+### historico com diff dos commits
+
+    git log -p
+    
 ##### Exibir resumo do histórico (hash completa, autor, data, comentário e qtde de alterações (+/-))
 
 	git log --stat
+    
+### Alterando um commit
 
-##### Exibir histório de um arquivo específico
+#### Mensagem de commit errada
 
-	git log -- <caminho_do_arquivo>
+    git commit --amend -m mensagemAtualizada
+
+#### Adicionar arquivo staged que ficou para tras ultimo commit
+
+    git commit --amend --no-edit
+    
+#### Acessar versao de commit antigo
+
+    git checkout hashCommit
+    
+#### Voltat para versao de commit mais atual
+
+    git checkout master
+
+#### Remover untreacked file
+
+    git clean -f
+
+### Ingnorando arquivos
+
+#### Criar um gitignore, abrir .gitignore e listar os que devem ser ignorados
+
+    touch .gitignore
+
+### Clonando repository
+
+    git clone repoOriginal repoClone
+
+
 ## Repositório Remoto
 
 ### Exibir os repositórios remotos
@@ -111,6 +147,53 @@
 ### Clonar um repositório remoto já existente
 
 	git clone git@github.com:leocomelli/curso-git.git
+
+### Branch
+
+#### Listagem de branches
+
+    git branch
+    git branch --list
+
+#### Criar branch
+
+    git branch nomeBranch
+
+#### Acessar branch
+
+    git checkout nomeBranch
+    git switch nomeBranch
+
+#### Criar e acessar branch
+
+    git checkout -b nomeBranch
+    git switch -c nomeBranch
+
+#### Primeiro push na branch
+
+    git push --set-upstream origin nomeBranch
+    git push -u origin nomeBranch
+
+#### Remover branch local
+
+    git branch -d nomeBranch
+    
+#### Remover branch remota
+
+    git push --delete origin nomeBranch
+
+#### Renomear branch
+
+    git branch -m nomeBranch novoNome
+
+
+### Merge
+
+#### importante estar na main
+
+    git switch main
+    git merge nomeBranch
+
 	
 ### Tags
 
@@ -121,11 +204,6 @@
 ##### Criando uma tag anotada
 
 	git tag -a vs-1.1 -m "Minha versão 1.1"
-
-##### Criando uma tag assinada
-Para criar uma tag assinada é necessário uma chave privada (GNU Privacy Guard - GPG).
-
-	git tag -s vs-1.1 -m "Minha tag assinada 1.1"
 
 ##### Criando tag a partir de um commit (hash)
 
